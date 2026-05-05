@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minhaz Khan — Data & Project Management Expert</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f5ede3;
+      --bg-card:   #eddece;
+      --bg-card2:  #e8c9ba;
+      --bg-nav:    #f0e2d4;
+      --red:       #7a1c12;
+      --red-dark:  #1e0705;
+      --red-mid:   #2a0a08;
+      --text-muted: rgba(42,10,8,0.48);
+      --text-faint: rgba(42,10,8,0.35);
+      --border:    rgba(122,28,18,0.15);
+      --border-strong: rgba(122,28,18,0.28);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--red-mid);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: var(--bg-nav);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--red);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); font-weight: 500; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 48px 64px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: start;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+      border: 0.5px solid var(--red);
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 22px;
+      letter-spacing: 0.04em;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 58px;
+      line-height: 1.08;
+      color: var(--red-dark);
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+    .hero h1 em { font-style: italic; color: var(--red); }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+    .chip {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      background: rgba(122,28,18,0.07);
+      color: var(--red);
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 0.5px solid rgba(122,28,18,0.22);
+    }
+    .hero-btns { display: flex; gap: 14px; }
+    .btn-primary {
+      background: var(--red);
+      color: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 26px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 12px 26px;
+      border-radius: 7px;
+      border: 0.5px solid rgba(42,10,8,0.2);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--red); color: var(--red); }
+
+    /* stat cards column */
+    .hero-stats { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+    .stat-card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      text-align: center;
+      min-width: 110px;
+    }
+    .stat-num {
+      display: block;
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 48px 0;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: rgba(122,28,18,0.45);
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .section-line {
+      flex: 1;
+      height: 0.5px;
+      background: var(--border);
+    }
+
+    /* ── SKILLS ── */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 700px) { .skill-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .skill-grid { grid-template-columns: 1fr; } }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .skill-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    .skill-card.featured { background: var(--bg-card2); border-color: var(--border-strong); }
+    .skill-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(122,28,18,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--red);
+    }
+    .skill-card h3 { font-size: 14px; font-weight: 500; color: var(--red-dark); margin-bottom: 6px; }
+    .skill-card p { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+    .skill-bar-wrap {
+      margin-top: 14px;
+      height: 2px;
+      background: rgba(122,28,18,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .skill-bar {
+      height: 100%;
+      background: var(--red);
+      border-radius: 2px;
+      transform-origin: left;
+      animation: grow 1s ease forwards;
+    }
+    @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    /* ── PROJECTS ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 600px) { .project-grid { grid-template-columns: 1fr; } }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+    .project-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .project-card h3 { font-size: 14px; font-weight: 500; color: var(--red-dark); }
+    .project-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--red);
+      background: rgba(122,28,18,0.08);
+      padding: 3px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .project-card p { font-size: 12px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+    .project-viz {
+      height: 60px;
+      border-radius: 8px;
+      background: rgba(122,28,18,0.05);
+      display: flex;
+      align-items: flex-end;
+      padding: 8px 10px;
+      gap: 5px;
+    }
+    .bar {
+      flex: 1;
+      background: rgba(122,28,18,0.18);
+      border-radius: 2px 2px 0 0;
+      min-height: 8px;
+    }
+    .bar.hi { background: var(--red); }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+    .about-card h3 { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--red-dark); margin-bottom: 10px; }
+    .about-card p { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+    .timeline { list-style: none; }
+    .timeline li {
+      display: flex;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 0.5px solid var(--border);
+      font-size: 13px;
+    }
+    .timeline li:last-child { border-bottom: none; }
+    .timeline-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+      min-width: 38px;
+      padding-top: 2px;
+    }
+    .timeline-role { color: var(--red-dark); font-weight: 500; margin-bottom: 2px; }
+    .timeline-co { color: var(--text-muted); font-size: 12px; }
+
+    /* ── CONTACT ── */
+    .contact-strip {
+      max-width: 1100px;
+      margin: 48px auto 0;
+      padding: 0 48px;
+    }
+    .contact-inner {
+      background: var(--red);
+      border-radius: 14px;
+      padding: 36px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .contact-inner h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: var(--bg);
+      margin-bottom: 6px;
+    }
+    .contact-inner p {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: rgba(245,237,227,0.55);
+    }
+    .btn-contact {
+      background: var(--bg);
+      color: var(--red);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 13px 24px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-contact:hover { opacity: 0.88; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding: 24px 48px;
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-faint);
+      font-family: 'DM Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">Minhaz Khan</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-tag">Open to work · Remote / Los Angeles</span>
+      <h1>Data &amp; <em>Project</em> Management Expert</h1>
+      <p class="hero-sub">I build data pipelines, lead cross-functional teams, and turn messy data into clear decisions.</p>
+      <div class="hero-chips">
+        <span class="chip">SQL</span>
+        <span class="chip">Python ETL</span>
+        <span class="chip">Excel / Power Query</span>
+        <span class="chip">Project Management</span>
+        <span class="chip">Stakeholder Reporting</span>
+        <span class="chip">Tableau</span>
+      </div>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#projects">View Projects</a>
+        <a class="btn-ghost" href="mkresume.pdf" download>Download Resume</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Years Exp</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">40+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Industries</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="section-header">
+      <span class="section-num">00</span>
+      <span class="section-title">About</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Background</h3>
+        <p>
+          I'm a data and operations professional with 8+ years turning complex, fragmented data into reliable infrastructure and actionable insights. I sit at the intersection of technical execution and project leadership — comfortable writing a Python ETL script in the morning and running a stakeholder alignment meeting in the afternoon.
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>Experience</h3>
+        <ul class="timeline">
+          <li>
+            <span class="timeline-year">2025-2016</span>
+            <div>
+              <div class="timeline-role">Senior Biostatistician</div>
+              <div class="timeline-co">Beckman Coulter</div>
+            </div>
+          </li>
+          <li>
+            <span class="timeline-year">2016-2014</span>
+            <div>
+              <div class="timeline-role">Marketing Data Analyst</div>
+              <div class="timeline-co">American Botanical Pharmacy</div>
+            </div>
+          </li>
+          <li>
+            <span class="timeline-year">2014-2012</span>
+            <div>
+              <div class="timeline-role">Data Analyst</div>
+              <div class="timeline-co">THe Academic Advantahe Inc</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Core Skills</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card featured">
+        <div class="skill-icon">SQL</div>
+        <h3>SQL & Database Design</h3>
+        <p>Complex queries, CTEs, window functions, query optimization across Postgres, Snowflake, BigQuery</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">Py</div>
+        <h3>Python ETL Pipelines</h3>
+        <p>Pandas, dbt, Airflow — end-to-end data cleaning, transformation, and scheduling</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">XL</div>
+        <h3>Excel & Power Query</h3>
+        <p>Advanced formulas, pivot tables, Power BI dashboards — from raw CSV to executive report</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">PM</div>
+        <h3>Project Management</h3>
+        <p>Agile, Scrum, stakeholder alignment, risk management, roadmapping — PMP certified</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">VZ</div>
+        <h3>Data Visualization</h3>
+        <p>Tableau, Power BI, Plotly — executive-ready dashboards that tell a clear story</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">↗</div>
+        <h3>Process Optimization</h3>
+        <p>Workflow automation, bottleneck analysis, KPI design, cross-team alignment</p>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section" style="padding-bottom: 0;">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Featured Projects</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Sales Pipeline ETL</h3>
+          <span class="project-tag">Python · SQL</span>
+        </div>
+        <p>Automated daily ingestion of 2M+ rows from 5 sources into a unified data warehouse, cutting report lag from 3 days to 4 hours.</p>
+        <div class="project-viz">
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar hi" style="height:80%"></div>
+          <div class="bar" style="height:60%"></div>
+          <div class="bar hi" style="height:90%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar hi" style="height:100%"></div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Q3 Ops Dashboard</h3>
+          <span class="project-tag">Excel · Power BI</span>
+        </div>
+        <p>Built a live KPI dashboard for 6 cross-functional teams, replacing a 40-tab spreadsheet nightmare with one source of truth.</p>
+        <div class="project-viz">
+          <div class="bar" style="height:60%"></div>
+          <div class="bar hi" style="height:85%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar hi" style="height:95%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar" style="height:40%"></div>
+          <div class="bar hi" style="height:75%"></div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Inventory Reconciliation Tool</h3>
+          <span class="project-tag">Python · Excel</span>
+        </div>
+        <p>Built a Python script to auto-reconcile inventory discrepancies across 3 systems, saving 12 hrs/week of manual work.</p>
+        <div class="project-viz">
+          <div class="bar hi" style="height:70%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar hi" style="height:88%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar hi" style="height:75%"></div>
+          <div class="bar" style="height:40%"></div>
+          <div class="bar hi" style="height:92%"></div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Cross-team Sprint Tracker</h3>
+          <span class="project-tag">PM · Airtable</span>
+        </div>
+        <p>Designed and rolled out an Agile sprint tracker for 4 engineering pods, improving on-time delivery rate from 62% to 89%.</p>
+        <div class="project-viz">
+          <div class="bar" style="height:40%"></div>
+          <div class="bar" style="height:62%"></div>
+          <div class="bar hi" style="height:78%"></div>
+          <div class="bar hi" style="height:89%"></div>
+          <div class="bar" style="height:72%"></div>
+          <div class="bar hi" style="height:85%"></div>
+          <div class="bar hi" style="height:94%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div id="contact" class="contact-strip">
+    <div class="contact-inner">
+      <div>
+        <h2>Let's work together</h2>
+        <p>minhazkhanla@gmail.com · linkedin.com/in/minkhan/ </p>
+      </div>
+      <a class="btn-contact" href="mailto:minhazkhanla@gmail.com">Get in touch →</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>Minhaz Khan · 2025</span>
+    <span>Built with HTML/CSS</span>
+  </footer>
+
+  <script>
+    // Highlight active nav link on scroll
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
