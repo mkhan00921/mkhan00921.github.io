@@ -248,7 +248,7 @@
     /* ── PROJECTS ── */
     .project-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 14px;
     }
     @media (max-width: 600px) { .project-grid { grid-template-columns: 1fr; } }
@@ -262,6 +262,7 @@
       text-decoration: none;
       display: block;
       cursor: pointer;
+      min-width: 0;
     }
     .project-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
     .project-top {
