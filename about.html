@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minhaz Khan — About Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f5ede3;
+      --bg-card:   #eddece;
+      --bg-card2:  #e8c9ba;
+      --bg-nav:    #f0e2d4;
+      --red:       #7a1c12;
+      --red-dark:  #1e0705;
+      --red-mid:   #2a0a08;
+      --text-muted: rgba(42,10,8,0.48);
+      --text-faint: rgba(42,10,8,0.35);
+      --border:    rgba(122,28,18,0.15);
+      --border-strong: rgba(122,28,18,0.28);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--red-mid); min-height: 100vh; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; background: var(--bg-nav); border-bottom: 0.5px solid var(--border); }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--red); text-decoration: none; }
+    .nav-links { display: flex; gap: 16px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); font-weight: 500; }
+    .nav-btn-outline { font-size: 12px; color: var(--red); border: 0.5px solid rgba(122,28,18,0.35); padding: 7px 16px; border-radius: 6px; font-family: 'DM Mono', monospace; cursor: pointer; background: transparent; letter-spacing: 0.04em; }
+    .nav-btn-solid { font-size: 12px; background: var(--red); color: var(--bg); padding: 7px 16px; border-radius: 6px; font-family: 'DM Mono', monospace; cursor: pointer; border: none; text-decoration: none; letter-spacing: 0.04em; }
+    .nav-btn-solid:hover { opacity: 0.88; }
+
+    /* CONTACT POPUP */
+    .contact-popup { display: none; position: absolute; top: 62px; right: 48px; background: var(--bg-nav); border: 0.5px solid var(--border-strong); border-radius: 12px; padding: 16px; width: 240px; box-shadow: 0 8px 32px rgba(42,10,8,0.12); z-index: 200; }
+    .contact-popup.open { display: block; }
+    .popup-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 12px; }
+    .popup-option { display: flex; align-items: center; gap: 12px; background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; text-decoration: none; transition: border-color 0.2s; }
+    .popup-option:last-child { margin-bottom: 0; }
+    .popup-option:hover { border-color: var(--border-strong); }
+    .popup-icon { width: 30px; height: 30px; border-radius: 7px; background: rgba(122,28,18,0.1); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--red); flex-shrink: 0; }
+    .popup-label { font-size: 13px; color: var(--red-dark); font-weight: 500; margin-bottom: 2px; }
+    .popup-sub { font-size: 11px; color: var(--text-muted); }
+
+    /* NAME HERO */
+    .name-hero { max-width: 1100px; margin: 0 auto; padding: 56px 48px 0; }
+    .name-hero h1 { font-family: 'DM Serif Display', serif; font-size: 58px; color: var(--red-dark); line-height: 1.08; }
+    .name-hero h1 em { font-style: italic; color: var(--red); }
+
+    /* BLURB */
+    .blurb-section { max-width: 1100px; margin: 0 auto; padding: 32px 48px 0; }
+    .blurb-inner { overflow: hidden; }
+    .portrait-float { float: right; margin: 0 0 20px 28px; width: 180px; }
+    .portrait-img { width: 180px; height: 210px; border-radius: 12px; object-fit: cover; border: 0.5px solid var(--border); display: block; background: var(--bg-card2); }
+    .portrait-placeholder { width: 180px; height: 210px; border-radius: 12px; background: var(--bg-card2); border: 0.5px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+    .portrait-placeholder span { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-faint); text-align: center; padding: 0 12px; }
+    .la-float { float: left; margin: 16px 28px 20px 0; width: 200px; }
+    .la-img-wrap { width: 200px; height: 120px; border-radius: 12px; overflow: hidden; position: relative; border: 0.5px solid var(--border); }
+    .la-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .la-tint { position: absolute; inset: 0; background: rgba(122,28,18,0.45); border-radius: 12px; }
+    .la-svg-placeholder { width: 200px; height: 120px; border-radius: 12px; overflow: hidden; position: relative; border: 0.5px solid var(--border); }
+    .la-overlay-text { position: absolute; bottom: 12px; left: 14px; }
+    .la-overlay-text p { font-family: 'DM Serif Display', serif; font-size: 16px; color: #f5ede3; line-height: 1.2; }
+    .la-overlay-text p em { font-style: italic; color: #e8c9ba; }
+    .blurb-text { font-size: 15px; line-height: 1.85; color: rgba(42,10,8,0.68); margin-bottom: 18px; }
+.portrait-thumb {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 180px;
+  height: 210px;
+}
+.portrait-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portrait-tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(122,28,18,0.35);
+}
+
+    /* PET CARD GRID INSIDE MISC CARD */
+.pet-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+.pet-thumb {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-card2);
+  cursor: default;
+}
+.pet-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pet-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-card2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+.pet-thumb-tint {
+  position: absolute;
+  inset: 0;
+  background: rgba(122,28,18,0.35);
+  transition: background 0.25s ease;
+}
+.pet-thumb-name {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 15px;
+  color: #f5ede3;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  letter-spacing: 0.03em;
+}
+.pet-thumb:hover .pet-thumb-tint {
+  background: rgba(122,28,18,0.6);
+}
+.pet-thumb:hover .pet-thumb-name {
+  opacity: 1;
+}
+
+    /* DIVIDER */
+    .divider { max-width: 1100px; margin: 40px auto 0; padding: 0 48px; display: flex; align-items: center; gap: 16px; }
+    .div-line { flex: 1; height: 0.5px; background: var(--border); }
+    .div-label { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--red); white-space: nowrap; }
+
+    /* THREE CARD GRID */
+    .three-grid { max-width: 1100px; margin: 24px auto 0; padding: 0 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    @media (max-width: 700px) { .three-grid { grid-template-columns: 1fr; } }
+    .misc-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; }
+    .misc-card h3 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--red-dark); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 0.5px solid var(--border); }
+    .misc-card ul:not(.timeline) { list-style: none; padding: 0; }
+    .misc-card ul:not(.timeline) li { font-size: 13px; color: var(--text-muted); padding: 5px 0; line-height: 1.55; border-bottom: 0.5px solid rgba(122,28,18,0.07); }
+    .misc-card ul:not(.timeline) li:last-child { border-bottom: none; }
+    .misc-card ul:not(.timeline) li::before { content: "– "; color: rgba(122,28,18,0.35); }
+
+    /* TIMELINE (shared by misc cards and about section) */
+    .timeline { list-style: none; }
+    .timeline li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 0.5px solid var(--border); font-size: 13px; }
+    .timeline li:last-child { border-bottom: none; }
+    .timeline-year { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--red); min-width: 70px; padding-top: 2px; }
+    .timeline-role { color: var(--red-dark); font-weight: 500; margin-bottom: 2px; }
+    .timeline-co { color: var(--text-muted); font-size: 12px; }
+
+    /* HOBBIES CARDS */
+    .hobby-grid { max-width: 1100px; margin: 24px auto 0; padding: 0 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    @media (max-width: 700px) { .hobby-grid { grid-template-columns: 1fr; } }
+    .hobby-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+    .hobby-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    .hobby-icon { font-size: 28px; margin-bottom: 10px; }
+    .hobby-label { font-size: 14px; font-weight: 500; color: var(--red-dark); margin-bottom: 6px; }
+    .hobby-sub { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    /* HOUSEHOLD */
+    .four-grid { max-width: 1100px; margin: 24px auto 0; padding: 0 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    @media (max-width: 700px) { .four-grid { grid-template-columns: 1fr 1fr; } }
+    .pet-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+    .pet-card:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+    .pet-img-wrap { width: 100%; height: 140px; position: relative; overflow: hidden; background: var(--bg-card2); }
+    .pet-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pet-tint { position: absolute; inset: 0; background: rgba(122,28,18,0.3); }
+    .pet-placeholder { width: 100%; height: 140px; background: var(--bg-card2); display: flex; align-items: center; justify-content: center; position: relative; }
+    .pet-placeholder-icon { font-size: 36px; position: relative; z-index: 1; }
+    .pet-placeholder-tint { position: absolute; inset: 0; background: rgba(122,28,18,0.2); }
+    .pet-name { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--red-dark); font-weight: 500; text-align: center; padding: 12px 0 14px; }
+
+    /* OTHER PROJECTS */
+    .proj-section { max-width: 1100px; margin: 24px auto 0; padding: 0 48px; }
+    .budget-card { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px 28px; display: flex; justify-content: space-between; align-items: center; gap: 20px; transition: border-color 0.2s; }
+    .budget-card:hover { border-color: var(--border-strong); }
+    .budget-tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red); background: rgba(122,28,18,0.08); padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+    .budget-card h3 { font-size: 16px; font-weight: 500; color: var(--red-dark); margin-bottom: 6px; }
+    .budget-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; max-width: 500px; }
+    .btn-budget { background: var(--red); color: var(--bg); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; padding: 11px 22px; border-radius: 7px; white-space: nowrap; text-decoration: none; flex-shrink: 0; transition: opacity 0.2s; display: inline-block; }
+    .btn-budget:hover { opacity: 0.88; }
+
+    /* CONTACT */
+    .contact-strip { max-width: 1100px; margin: 48px auto 0; padding: 0 48px; }
+    .contact-inner { background: var(--red); border-radius: 14px; padding: 36px 40px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+    .contact-inner h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--bg); margin-bottom: 6px; }
+    .contact-inner p { font-family: 'DM Mono', monospace; font-size: 12px; color: rgba(245,237,227,0.55); }
+    .btn-contact { background: var(--bg); color: var(--red); font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; padding: 13px 24px; border-radius: 8px; border: none; cursor: pointer; white-space: nowrap; text-decoration: none; transition: opacity 0.2s; }
+    .btn-contact:hover { opacity: 0.88; }
+
+    /* FOOTER */
+    footer { max-width: 1100px; margin: 32px auto 0; padding: 24px 48px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; font-size: 12px; color: var(--text-faint); font-family: 'DM Mono', monospace; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">Minhaz Khan</a>
+    <ul class="nav-links">
+      <li><a href="/">Professional Background</a></li>
+      <li><a href="/about.html" class="active">About Me</a></li>
+      <li><button class="nav-btn-outline" onclick="document.getElementById('contactPopup').classList.toggle('open')">Contact ▾</button></li>
+      <li><a class="nav-btn-solid" href="mkresume.pdf" download>Download Resume</a></li>
+    </ul>
+  </nav>
+
+  <div class="contact-popup" id="contactPopup">
+    <div class="popup-title">Get in touch</div>
+    <a class="popup-option" href="mailto:minhazkhanla@gmail.com">
+      <div class="popup-icon">✉</div>
+      <div><div class="popup-label">Send an email</div><div class="popup-sub">minhazkhanla@gmail.com</div></div>
+    </a>
+    <a class="popup-option" href="https://linkedin.com/in/minkhan/" target="_blank">
+      <div class="popup-icon">in</div>
+      <div><div class="popup-label">LinkedIn</div><div class="popup-sub">linkedin.com/in/minkhan</div></div>
+    </a>
+  </div>
+
+  <!-- NAME -->
+  <div class="name-hero">
+    <h1>Minhaz <em>Khan</em></h1>
+  </div>
+
+  <!-- BLURB WITH FLOATED IMAGES -->
+  <div class="blurb-section">
+    <div class="blurb-inner">
+
+<div class="portrait-float">
+  <div class="portrait-thumb">
+    <img class="portrait-img" src="images/headshot.PNG" alt="Minhaz Khan" />
+    <div class="portrait-tint"></div>
+  </div>
+</div>
+
+      <p class="blurb-text">I am obsessed with learning about the things we create into the world in as many ways as I can; as small as a new Recipe System (this is what I call my fad diets) or big, like waxing poetic about the state of things with my community & friends at a park, museum, or bar. I am blessed by my animals - my dog & my cats, who have kept me VERY active, and have taught me about non-verbal communication, temperament, respect, and space. They are also the reason for not consuming meat. Moreover, I believe healthy connections, learning, and broadening our communities can (and should) go hand in hand with technology & social connections. Social Media is just that - but it isn't always abgout social connections. Carving out ways to adapt the technology available to us - large social media platforms, AI, streaming, gaming - to serve each other is possible.</p>
+
+      <div class="la-float">
+          <div class="la-img-wrap">
+            <img class="la-img" src="images/la.jpg" alt="Los Angeles skyline" />
+            <div class="la-tint"></div>
+            <div class="la-overlay-text"><p><em>Made in</em><br>Los Angeles</p></div>
+          </div>
+      </div>
+
+      <p class="blurb-text">I was born in Dhaka, Bangladesh, and immigrated to Los Angeles, California at the ripe age of 4 years old - and have been raised and molded by this city ever since. I grew up in Inglewood, went to High School in Compton, went to university in the Inland Empire, and have spent my formative years in the cultural hubs of the city - Koreatown, Silverlake, West Hollywood, Downtown, Glendale, Highland park. </p>
+
+    </div>
+  </div>
+
+  <!-- MORE ABOUT ME -->
+  <div class="divider">
+    <div class="div-line"></div>
+    <span class="div-label">More About Me</span>
+    <div class="div-line"></div>
+  </div>
+
+<div class="three-grid">
+
+  <div class="misc-card">
+    <h3>Education</h3>
+    <ul class="timeline">
+      <li>
+        <span class="timeline-year">2007</span>
+        <div>
+          <div class="timeline-role">A.A. Biological Sciences</div>
+          <div class="timeline-co">Santa Monica College</div>
+        </div>
+      </li>
+      <li>
+        <span class="timeline-year">2009</span>
+        <div>
+          <div class="timeline-role">B.S. Neuroscience</div>
+          <div class="timeline-co">University of California, Riverside</div>
+        </div>
+      </li>
+            <li>
+        <span class="timeline-year">2022</span>
+        <div>
+          <div class="timeline-role">Project Management & CAPA</div>
+          <div class="timeline-co">Beckman Coulter Learning</div>
+        </div>
+      </li>
+      <li>
+        <span class="timeline-year">2024</span>
+        <div>
+          <div class="timeline-role">Data+ Certification</div>
+          <div class="timeline-co">CompTIA</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="misc-card">
+    <h3>More Experience</h3>
+    <ul class="timeline">
+      <li>
+        <span class="timeline-year">2012–2011</span>
+        <div>
+          <div class="timeline-role">Salesperson</div>
+          <div class="timeline-co">Nordstrom</div>
+        </div>
+      </li>
+      <li>
+        <span class="timeline-year">2011–2007</span>
+        <div>
+          <div class="timeline-role">Front Desk</div>
+          <div class="timeline-co">Microtel Inn & Ramada Inn</div>
+        </div>
+      </li>
+      <li>
+        <span class="timeline-year">Various/PT</span>
+        <div>
+          <div class="timeline-role">Server, Office Cleaner, Tutor</div>
+          <div class="timeline-co">Various employers</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="misc-card">
+    <h3>Household</h3>
+    <div class="pet-grid">
+      <div class="pet-thumb">
+        <img src="images/willow.PNG" alt="Willow" />
+        <div class="pet-thumb-placeholder">🐾</div>
+        <div class="pet-thumb-tint"></div>
+        <div class="pet-thumb-name">Willow</div>
+      </div>
+      <div class="pet-thumb">
+        <img src="images/milo.PNG" alt="Milo" />
+        <div class="pet-thumb-placeholder">🐾</div>
+        <div class="pet-thumb-tint"></div>
+        <div class="pet-thumb-name">Milo</div>
+      </div>
+      <div class="pet-thumb">
+        <img src="images/max.PNG" alt="Max" />
+        <div class="pet-thumb-placeholder">🐾</div>
+        <div class="pet-thumb-tint"></div>
+        <div class="pet-thumb-name">Max</div>
+      </div>
+      <div class="pet-thumb">
+        <img src="images/montreal.PNG" alt="Montreal" />
+        <div class="pet-thumb-placeholder">🐾</div>
+        <div class="pet-thumb-tint"></div>
+        <div class="pet-thumb-name">Montreal</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+  <!-- HOBBIES & INTERESTS -->
+  <div class="divider">
+    <div class="div-line"></div>
+    <span class="div-label">Hobbies &amp; Interests</span>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="hobby-grid">
+    <div class="hobby-card">
+      <div class="hobby-icon">📊</div>
+      <div class="hobby-label">Data Side Projects</div>
+      <div class="hobby-sub">Building dashboards, scrapers, and apps for fun. Visualizing personal curiosities</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">🏆</div>
+      <div class="hobby-label">Fantasy Sports</div>
+      <div class="hobby-sub">Strategy, statistics, and a healthy amount of trash talk — applying data instincts to the game</div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-icon">🌆</div>
+      <div class="hobby-label">Exploring LA</div>
+      <div class="hobby-sub">Soaking in sun at any park or beach, discovering new music at venues, and regularly visiting every museum in the city - everything that make Los Angeles endlessly interesting</div>
+    </div>
+  </div>
+
+  <!-- OTHER PROJECTS -->
+  <div class="divider">
+    <div class="div-line"></div>
+    <span class="div-label">Other Projects</span>
+    <div class="div-line"></div>
+  </div>
+
+  <div class="proj-section">
+    <div class="budget-card">
+      <div>
+        <span class="budget-tag">Personal Finance · Web App</span>
+        <h3>Budget App</h3>
+        <p>A personal budgeting tool I designed and built from scratch — track spending, set goals, and visualize where your money goes each month.</p>
+      </div>
+      <a class="btn-budget" href="#" target="_blank">Check it out →</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-strip">
+    <div class="contact-inner">
+      <div>
+        <h2>Let's work together</h2>
+        <p>minhazkhanla@gmail.com · linkedin.com/in/minkhan/</p>
+      </div>
+      <a class="btn-contact" href="mailto:minhazkhanla@gmail.com">Get in touch →</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>Minhaz Khan · 2026</span>
+    <span>Built with HTML/CSS</span>
+  </footer>
+
+  <script>
+    document.addEventListener('click', function(e) {
+      const popup = document.getElementById('contactPopup');
+      const btn = document.querySelector('.nav-btn-outline');
+      if (!popup.contains(e.target) && !btn.contains(e.target)) {
+        popup.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
