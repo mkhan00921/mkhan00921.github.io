@@ -34,8 +34,18 @@
     .nav-links a { font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--red); font-weight: 500; }
     .nav-btn-outline { font-size: 12px; color: var(--red); border: 0.5px solid rgba(122,28,18,0.35); padding: 7px 16px; border-radius: 6px; font-family: 'DM Mono', monospace; cursor: pointer; background: transparent; letter-spacing: 0.04em; }
-    .nav-btn-solid { font-size: 12px; background: var(--red); color: var(--bg); padding: 7px 16px; border-radius: 6px; font-family: 'DM Mono', monospace; cursor: pointer; border: none; text-decoration: none; letter-spacing: 0.04em; }
+    .nav-btn-solid { font-size: 12px; background: var(--red); color: #f5ede3 !important; padding: 7px 16px; border-radius: 6px; font-family: 'DM Mono', monospace; cursor: pointer; border: none; text-decoration: none; letter-spacing: 0.04em; }
     .nav-btn-solid:hover { opacity: 0.88; }
+    .nav-contact-link {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.nav-contact-link:hover { color: var(--red); font-weight: 500; }
 
     /* CONTACT POPUP */
     .contact-popup { display: none; position: absolute; top: 62px; right: 48px; background: var(--bg-nav); border: 0.5px solid var(--border-strong); border-radius: 12px; padding: 16px; width: 240px; box-shadow: 0 8px 32px rgba(42,10,8,0.12); z-index: 200; }
@@ -216,9 +226,9 @@
   <nav>
     <a class="nav-logo" href="/">Minhaz Khan</a>
     <ul class="nav-links">
-      <li><a href="/">Professional Background</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="/about.html" class="active">About Me</a></li>
-      <li><button class="nav-btn-outline" onclick="document.getElementById('contactPopup').classList.toggle('open')">Contact ▾</button></li>
+      <li><a class="nav-contact-link" onclick="document.getElementById('contactPopup').classList.toggle('open')">Contact ▾</a></li>
       <li><a class="nav-btn-solid" href="mkresume.pdf" download>Download Resume</a></li>
     </ul>
   </nav>
@@ -246,7 +256,7 @@
 
 <div class="portrait-float">
   <div class="portrait-thumb">
-    <img class="portrait-img" src="images/headshot.PNG" alt="Minhaz Khan" />
+    <img class="portrait-img" src="images/headshot.png" alt="Minhaz Khan" />
     <div class="portrait-tint"></div>
   </div>
 </div>
