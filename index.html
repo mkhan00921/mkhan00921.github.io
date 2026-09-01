@@ -47,6 +47,29 @@
 }
 .nav-contact-link:hover { color: var(--red); font-weight: 500; }
 
+/* 3. Download Resume button text centered when wrapped */
+@media (max-width: 768px) {
+  .nav-btn-solid {
+    text-align: center;
+    line-height: 1.4;
+    padding: 6px 10px;
+  }
+}
+
+/* 4. Get in Touch button stays inside card on mobile */
+@media (max-width: 768px) {
+  .contact-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .btn-contact {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+}
+
     /* CONTACT POPUP */
     .contact-popup { display: none; position: absolute; top: 62px; right: 48px; background: var(--bg-nav); border: 0.5px solid var(--border-strong); border-radius: 12px; padding: 16px; width: 240px; box-shadow: 0 8px 32px rgba(42,10,8,0.12); z-index: 200; }
     .contact-popup.open { display: block; }
