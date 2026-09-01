@@ -53,6 +53,57 @@
     text-align: center;
     line-height: 1.4;
     padding: 6px 10px;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hero switches to single column stack */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 36px 20px 32px;
+    gap: 24px;
+  }
+
+  /* Smaller title */
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  /* Smaller subtitle */
+  .hero-sub {
+    font-size: 13px;
+  }
+
+  /* Stat cards go horizontal in a row */
+  .hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 0;
+  }
+
+  /* Each stat card shrinks to fit 2 per row */
+  .stat-card {
+    min-width: 0;
+    flex: 1 1 calc(50% - 8px);
+    padding: 10px 8px;
+  }
+
+  /* Smaller number */
+  .stat-num {
+    font-size: 20px;
+  }
+
+  /* Smaller industry label text */
+  .stat-card.industry .stat-num {
+    font-size: 11px;
+  }
+
+  .stat-label {
+    font-size: 9px;
   }
 }
 
