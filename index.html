@@ -60,51 +60,28 @@
 }
 
 @media (max-width: 768px) {
-  /* Hero switches to single column stack */
   .hero {
-    grid-template-columns: 1fr;
-    padding: 36px 20px 32px;
-    gap: 24px;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 32px 20px !important;
+    gap: 24px !important;
   }
-
-  /* Smaller title */
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  /* Smaller subtitle */
-  .hero-sub {
-    font-size: 13px;
-  }
-
-  /* Stat cards go horizontal in a row */
+  .hero h1 { font-size: 32px; }
+  .hero-sub { font-size: 13px; }
   .hero-stats {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
     padding-top: 0;
   }
-
-  /* Each stat card shrinks to fit 2 per row */
   .stat-card {
     min-width: 0;
     flex: 1 1 calc(50% - 8px);
     padding: 10px 8px;
   }
-
-  /* Smaller number */
-  .stat-num {
-    font-size: 20px;
-  }
-
-  /* Smaller industry label text */
-  .stat-card.industry .stat-num {
-    font-size: 11px;
-  }
-
-  .stat-label {
-    font-size: 9px;
-  }
+  .stat-num { font-size: 20px; }
+  .stat-card.industry .stat-num { font-size: 11px; }
+  .stat-label { font-size: 9px; }
 }
 
 /* 4. Get in Touch button stays inside card on mobile */
@@ -122,7 +99,7 @@
 }
 
     /* CONTACT POPUP */
-    .contact-popup { display: none; position: absolute; top: 62px; right: 48px; background: var(--bg-nav); border: 0.5px solid var(--border-strong); border-radius: 12px; padding: 16px; width: 240px; box-shadow: 0 8px 32px rgba(42,10,8,0.12); z-index: 200; }
+    .contact-popup { display: none; position: fixed; top: 62px; right: 48px; background: var(--bg-nav); border: 0.5px solid var(--border-strong); border-radius: 12px; padding: 16px; width: 240px; box-shadow: 0 8px 32px rgba(42,10,8,0.12); z-index: 200; }
     .contact-popup.open { display: block; }
     .popup-title { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-faint); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 12px; }
     .popup-option { display: flex; align-items: center; gap: 12px; background: var(--bg-card); border: 0.5px solid var(--border); border-radius: 8px; padding: 11px 14px; margin-bottom: 8px; text-decoration: none; transition: border-color 0.2s; }
